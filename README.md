@@ -1,5 +1,81 @@
 # React-Meetup
-## Prueba ténica
+## Prueba ténica - APARTADO 1.1
+
+```Javascript
+class RegisteredUser {
+  constructor(email, password, registration, adult, notificationPreferences, services = []) {
+      this.email = email;
+      this.password = password;
+      this.registration = registration;
+      this.adult = adult;
+      this.notificationPreferences = notificationPreferences;
+      this.services = services;
+  }
+
+  changeEmail(newEmail) {
+      this.email = newEmail;
+  }
+
+  changePassword(newPassword) {
+      this.password = newPassword;
+  }
+
+  changeAdultContent(adultContent) {
+      this.adult = adultContent;
+  }
+
+  changeNotificationPreferences(notificationPreferences) {
+      this.notificationPreferences = notificationPreferences;
+  }
+
+  updateName(newName) {
+      this.name = newName;
+  }
+
+  updateBirthDate(newBirthDate) {
+      this.birthDate = newBirthDate;
+  }
+
+  updateCountry(newCountry) {
+      this.country = newCountry;
+  }
+
+  getTotal() {
+      let total = 0;
+
+      this.services.forEach((service, index) => {
+          let multimediaContent = service.getMultimediaContent();
+
+          if (typeof service == StreamingService) {
+              total += multimediaContent.streamingPrice;
+          } else if (typeof service == DownloadService) {
+              total += multimediaContent.downloadPrice;
+          }
+
+          if (multimediaContent instanceof PremiumContent) {
+              total += multimediaContent.additionalFee;
+          }
+      });
+      return total;
+  }
+
+}
+
+```
+
+- Utilizar el instaceof para poder realizar comparaciones de  tipos de servicios
+
+- Manejar servicios que no son ni de streaming ni descarga
+
+- El total fijado a un valor float o cualquier otro valor que no sea un entero ya que puede ser un precio variable tipo 9.99 y no fijo a 9.
+
+- Añadir mas funcionalidad a la clase RegisteredUser, para cambiar preferencias de usuario.
+
+- Añadimos metodos para permitir a los usuarios modificar sus preferencias de contenido y ajustar preferencias de la cuenta.
+
+- Añadir poder cambiar el email, cambiar la contraseña, el contenido de adultos o no, cambiar sus notificaciones, fecha de nacimiento de la persona o su pais.
+
+## Prueba ténica - APARTADO 1.2
 
 1. Para el header se requiere una animación para tener un acceso rápido a las distintas páginas cuando hacemos scroll. Se quiere que cuando hacemos scroll down, este tiene que desaparecer y cuando hacemos scroll up tiene que volver a aparecer en la posición de la página dónde te encuentres.
 
@@ -56,5 +132,3 @@ Dependencias utilizadas fuera del proyecto.
 | Dependencias | README |
 | ------ | ------ |
 | react-router-dom@6 | [https://reactrouter.com/en/main/start/overview] |
-
-
