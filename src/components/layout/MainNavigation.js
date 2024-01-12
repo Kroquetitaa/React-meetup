@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./../../utils/constants";
 
 import classes from "./MainNavigation.module.css";
+import { Link } from "react-router-dom";
 
 export default function MainNavigation({ setPage }) {
 
-  const [prevY, setPrevY ] = useState(window.scrollY)
-  const [ isVisible, setIsVisible ] = useState(true)
+  const [prevY, setPrevY] = useState(window.scrollY)
+  const [isVisible, setIsVisible] = useState(true)
 
   const handleScroll = () => {
     const currentY = window.scrollY
@@ -26,21 +27,13 @@ export default function MainNavigation({ setPage }) {
       <nav>
         <ul>
           <li>
-            <a href="#" onClick={() => setPage(ALL_MEETUP_PAGE)}>
-              All Meetups
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onClick={() => setPage(NEW_MEETUP_PAGE)}>
-              Add New Meetup
-            </a>
+            <Link to={ALL_MEETUP_PAGE}>All Meetups</Link>
           </li>
           <li>
-            <a href="#" onClick={() => setPage(FAVORITES_PAGE)}>
-              My Favorites
-              <span className={classes.badge}>{0}</span>
-            </a>
+            <Link to={NEW_MEETUP_PAGE}>Add New Meetup</Link>
+          </li>
+          <li>
+            <Link to={FAVORITES_PAGE}>My Favorites  <span className={classes.badge}>{0}</span></Link>
           </li>
         </ul>
       </nav>
