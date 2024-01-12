@@ -3,11 +3,13 @@ import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./../../utils/
 
 import classes from "./MainNavigation.module.css";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../../context/FavoritesContext";
 
-export default function MainNavigation({ setPage }) {
+export default function MainNavigation() {
 
   const [prevY, setPrevY] = useState(window.scrollY)
   const [isVisible, setIsVisible] = useState(true)
+  const { favorites } = useFavorites()
 
   const handleScroll = () => {
     const currentY = window.scrollY
@@ -33,7 +35,7 @@ export default function MainNavigation({ setPage }) {
             <Link to={NEW_MEETUP_PAGE}>Add New Meetup</Link>
           </li>
           <li>
-            <Link to={FAVORITES_PAGE}>My Favorites  <span className={classes.badge}>{0}</span></Link>
+            <Link to={FAVORITES_PAGE}>My Favorites  <span className={classes.badge}>{favorites.length}</span></Link>
           </li>
         </ul>
       </nav>

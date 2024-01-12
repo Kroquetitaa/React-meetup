@@ -1,13 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const FavoritesContext = createContext()
 
 export function FavoritesProvider({ children }) {
     const [favorites, setFavorites] = useState([]);
 
-    const addFavorites = () => setFavorites(prevFavorites => [...prevFavorites, item]);
+    const addFavorites = (item) => setFavorites(prevFavorites => [...prevFavorites, item]);
 
-    const removeFavorites = () => setFavorites(prevFavorites => prevFavorites.filter(favItem => favItem !== item))
+    const removeFavorites = (item) => setFavorites(prevFavorites => prevFavorites.filter(favItem => favItem !== item))
 
     return (
         <FavoritesContext.Provider value={{ favorites, addFavorites, removeFavorites }}>
